@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        List<BluetoothDevice> list = new ArrayList<BluetoothDevice>(pairedDevices);
         initView();
         initBroadcast();
-
+        mAdapter = new BtAdapter(MainActivity.this, mList);
+        bt_list.setAdapter(mAdapter);
         //启动服务
         at = new AcceptThread();
         at.start();
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt:
+                mList.clear();
                 // 判断是否在搜索,如果在搜索，就取消搜索
                 if (mBluetoothAdapter.isDiscovering()) {
                     mBluetoothAdapter.cancelDiscovery();
@@ -157,15 +159,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String str = device.getName() + "\n" + device.getAddress();
                     Log.e(LanYaTag.Tag, "搜索到的设备：" + str);
                     mList.add(device);
+                    mAdapter.notifyDataSetChanged();
                 }
 
 
                 // 搜索完成
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED
                     .equals(action)) {
-                mAdapter = new BtAdapter(MainActivity.this, mList);
-                bt_list.setAdapter(mAdapter);
                 setTitle("搜索完成！");
+                mAdapter.notifyDataSetChanged();
             }
 
         }
