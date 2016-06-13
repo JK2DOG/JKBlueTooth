@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,8 +26,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
+
+import zc.jk.btlibrary.BluetoothLog;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     public static final UUID CUSTOM_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -196,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (mClientSocket == null) {
                     mClientSocket = device
                             .createRfcommSocketToServiceRecord(CUSTOM_UUID);
+                    BluetoothLog.e("开始连接");
                     // 连接
                     mClientSocket.connect();
                     // 获得输出流
@@ -207,7 +211,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             // 如果成功获得输出流
             if (os != null) {
+                BluetoothLog.e("连接成功");
                 os.write(hex2byte(CELIANG.getBytes()));
+                BluetoothLog.e("发出信息");
+
             }
 
         } catch (Exception e) {
