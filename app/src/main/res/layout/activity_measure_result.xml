@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+    
+	    <TextView 
+	        android:id="@+id/tv_ssy"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="收缩压："
+	        android:textSize="18sp"
+	        />
+	    <TextView 
+	        android:id="@+id/tv_szy"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="舒张压："
+	        android:textSize="18sp"
+	        />
+	    <TextView 
+	        android:id="@+id/tv_xl"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="心率："
+	        android:textSize="18sp"
+	        />
+	    
+	    <TextView 
+	        android:id="@+id/tv_other"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dp"
+	        android:text="记忆数据"
+	        android:textSize="18sp"
+	        />
+    
+    </LinearLayout>
+
+</ScrollView>
